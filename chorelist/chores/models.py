@@ -10,4 +10,4 @@ class Chore(models.Model):
 	chore_list = models.ForeignKey(ChoreList)
 	name = models.CharField(max_length=100)
 	due_date = models.DateTimeField()
-	complete = models.BooleanField(default=True)
+	complete = models.BooleanField(default=False)
