@@ -57,7 +57,7 @@ ROOT_URLCONF = 'chorelist.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],              # NOTE: this is recursive, so all of the subdirectoreis in "templates" will be included
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
