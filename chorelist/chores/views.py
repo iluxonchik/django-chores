@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.template import RequestContext, loader
 from .models import ChoreList
 
 # Create your views here.
@@ -9,17 +8,22 @@ from .models import ChoreList
 def index(request):
     # request represents an HTTP request that comes in
     lists = ChoreList.objects.all()
+    context = {'chorelists' : lists,}
+    return render(request, 'chores/index.html', context) # equivalent to comment below
+    """
     template = loader.get_template('chores/index.html')
     context = RequestContext(request, {
        'chorelists' : lists,
     })
     return HttpResponse(template.render(context)) # render template with the specified context
+    """
     
 def detail(request, chorelist_id):
     # note the named pattern from urls.py, it has the same name as the 2nd parameter of this function,
     # which is how the id in the url will be mapped to chorelist_id parameter of this function
     # (?P<chorelist_id>[0-9]+)
-    return HttpResponse("You're looking at ChoreList #{0}".format(chorelist_id))
+    lst = ChoreList.objects.get(pk=chorelist_id)
+    return render(request, 'chores/detail.html', {'chorelist' : lst})
     
 def chores(request, chorelist_id):
     return HttpResponse("You're looking at the Chores from ChoreList #{0}".format(chorelist_id))
