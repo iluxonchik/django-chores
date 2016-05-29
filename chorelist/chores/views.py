@@ -1,12 +1,19 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.template import RequestContext, loader
+from .models import ChoreList
 
 # Create your views here.
 # In Django, a View is just a function that returns an HTTP response
 
 def index(request):
     # request represents an HTTP request that comes in
-    return HttpResponse("You're at the ChoreList index")
+    lists = ChoreList.objects.all()
+    template = loader.get_template('chores/index.html')
+    context = RequestContext(request, {
+       'chorelists' : lists,
+    })
+    return HttpResponse(template.render(context)) # render template with the specified context
     
 def detail(request, chorelist_id):
     # note the named pattern from urls.py, it has the same name as the 2nd parameter of this function,

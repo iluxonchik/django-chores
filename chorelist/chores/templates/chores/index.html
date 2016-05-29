@@ -1,0 +1,11 @@
+{# variables are passed to templates through RequestContext in views.py #}
+{% if chorelists %}
+<ul>
+    {% for chorelist in chorelists %}
+        <li><a href="/chores/{{chorelist.id}}/">{{chorelist.name}}</a></li>
+    {% endfor %}    
+</ul>
+
+{% else %}
+    <p> No chorelists are currently available. </p>
+{% endif %}
