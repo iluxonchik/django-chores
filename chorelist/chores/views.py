@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from .models import ChoreList
 
 # Create your views here.
@@ -22,7 +22,10 @@ def detail(request, chorelist_id):
     # note the named pattern from urls.py, it has the same name as the 2nd parameter of this function,
     # which is how the id in the url will be mapped to chorelist_id parameter of this function
     # (?P<chorelist_id>[0-9]+)
-    lst = ChoreList.objects.get(pk=chorelist_id)
+    try:
+        lst = ChoreList.objects.get(pk=chorelist_id)
+    except ChoreList.DoesNotExist:
+        raise Http404('Chore list with id {0} does not exist'.format(chorelist_id)) # message only shown in Debug mode
     return render(request, 'chores/detail.html', {'chorelist' : lst})
     
 def chores(request, chorelist_id):
