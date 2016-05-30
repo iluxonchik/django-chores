@@ -29,6 +29,11 @@ def detail(request, chorelist_id):
     # note the named pattern from urls.py, it has the same name as the 2nd parameter of this function,
     # which is how the id in the url will be mapped to chorelist_id parameter of this function
     # (?P<chorelist_id>[0-9]+)
+    if 'name' in request.POST and 'duedate' in request.POST:
+        iscomplete = 'iscomplete' in request.POST
+        chore = Chore(chore_list=ChoreList.objects.get(pk=chorelist_id),name=request.POST['name'], due_date=request.POST['duedate'], complete=iscomplete)
+        chore.save()
+        
     lst = get_object_or_404(ChoreList, pk=chorelist_id)
     return render(request, 'chores/detail.html', {'chorelist':lst})
     """
@@ -54,3 +59,4 @@ def updatechore(request, chorelist_id, chore_id):
     
     chore.save()
     return HttpResponseRedirect('/chores/' + chorelist_id + '/chores/' + chore_id)
+    

@@ -1,0 +1,12 @@
+<h1> New List </h1>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <label for="name">List Name</label>
+    <input type="textbox" name="name" id="name" placeholder="Enter a name for your list" />
+    <br />
+    <label for="duedate">Due Date</label>
+    <input type="datetime-local" name="duedate" id="duedate" />
+    <br />
+    <input type="submit" value="Create" />
+</form>

@@ -1,0 +1,16 @@
+<h1> {{ chore }} </h1>
+
+<ul>
+    <li>Due Date: {{ chore.due_date }}</li>
+    <li>From list: <a href="/chores/{{ chore.chore_list.id }}/">{{ chore.chore_list }}</a></li>
+    <form action="./update/" method="POST">
+        {% csrf_token %}
+        {% if chore.complete %}
+            <li><label for="complete">Is Complete: </label><input type="checkbox" name="complete" id="complete" checked/></li>
+        {% else %}
+            <li><label for="complete">Is Complete: </label><input type="checkbox" name="complete" id="complete"/></li>
+        {% endif %}
+        <br/>
+        <input type="submit" value="Update" />
+    </form>
+<ul>

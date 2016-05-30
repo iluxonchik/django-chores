@@ -6,3 +6,17 @@
         <li><a href='./chores/{{chore.id}}'>{{chore}}</a></li>
     {% endfor %}
 </ul>
+
+<h2>Add New Chore</h2>
+<form action="" method="POST">
+    {% csrf_token %}
+    <label for="name">Name: </label>
+    <input type="textbox" name="name" id="id" placeholder="Enter Chore name"/>
+    <label for="name">Due Date: </label>
+    <input type="datetime-local" name="duedate" id="duedate"/>
+    <label for="name">Is Complete: </label>
+    <input type="checkbox" name="iscomplete" id="iscomplete"/>
+    <br />
+    
+    <input type="submit" value="NewChore" />
+</form>
