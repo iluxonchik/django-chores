@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% block primary %} {# this block will be injected into the placeholder in base.html, naming is important #}
+
 {# __str__ is overriden in models.py, so no need to write chorelist.name #}
 <h1>{{chorelist}}</h1>
 
@@ -20,3 +23,4 @@
     
     <input type="submit" value="NewChore" />
 </form>
+{% endblock %}

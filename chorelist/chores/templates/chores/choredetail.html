@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% block primary %} {# this block will be injected into the placeholder in base.html, naming is important #}
+
 <h1> {{ chore }} </h1>
 
 <ul>
@@ -14,3 +17,4 @@
         <input type="submit" value="Update" />
     </form>
 <ul>
+{% endblock %}

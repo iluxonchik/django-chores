@@ -1,8 +1,10 @@
+{% extends 'base.html' %}
+{% block primary %} {# this block will be injected into the placeholder in base.html, naming is important #}
 {# variables are passed to templates through RequestContext in views.py #}
 {% if chorelists %}
-<ul>
+<ul class="lsit-group">
     {% for chorelist in chorelists %}
-        <li><a href="/chores/{{chorelist.id}}/">{{chorelist.name}}</a></li>
+        <li class="list-group-item"><a href="/chores/{{chorelist.id}}/">{{chorelist.name}}</a></li>
     {% endfor %}    
 </ul>
 
@@ -10,4 +12,5 @@
     <p> No chorelists are currently available. </p>
 {% endif %}
 
-<a href="./newlist/">New List</a>
+<a type="button" class="btn btn-primary" href="./newlist/">Create New List</a>
+{% endblock %}

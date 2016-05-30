@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% block primary %} {# this block will be injected into the placeholder in base.html, naming is important #}
+
 <h1> New List </h1>
 
 <form action="" method="POST">
@@ -10,3 +13,4 @@
     <br />
     <input type="submit" value="Create" />
 </form>
+{% endblock %}
