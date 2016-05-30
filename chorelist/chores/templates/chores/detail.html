@@ -3,6 +3,6 @@
 
 <ul>
     {% for chore in chorelist.chore_set.all %}
-        <li>{{chore}}</li>
+        <li><a href='./chores/{{chore.id}}'>{{chore}}</a></li>
     {% endfor %}
 </ul>
